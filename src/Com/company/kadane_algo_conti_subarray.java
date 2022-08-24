@@ -7,22 +7,12 @@ public class kadane_algo_conti_subarray {
     long maxSubarraySum(int arr[], int n){
 
         // Your code here
-        long sum = 0;
-        long fans = 0;
-        for(int i=0; i<n; i++){
-            sum = arr[i]+sum;
-            if(sum <= 0 ){
-                sum = 0;
-            }
-            else{
-                if(fans<sum){
-                    fans = sum;
-                }
-            }
-
-
+        long result = arr[0];
+        for(int i=1; i<n; i++){
+            arr[i] = Math.max(arr[i-1]+arr[i],arr[i]);
+            result = Math.max(result,arr[i]);
         }
-        return fans;
+        return result;
     }
 
     public static void main(String[] args) {
